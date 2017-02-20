@@ -1,0 +1,28 @@
+{
+  "name": "jquery2",
+  "version": "1.0.0",
+  "description": "Carousel",
+  "main": "Gruntfile.js",
+  "dependencies": {
+    "grunt-browser-sync": "^2.2.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-sass": "^2.0.0",
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arkadiusz-cichosz/JQuery2.git"
+  },
+  "keywords": [
+    "carousel"
+  ],
+  "author": "Arkadiusz Cichosz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arkadiusz-cichosz/JQuery2/issues"
+  },
+  "homepage": "https://github.com/arkadiusz-cichosz/JQuery2#readme"
+}
