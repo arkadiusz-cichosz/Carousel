@@ -9,6 +9,7 @@
 
 #carousel ul {
 	margin: 0;
+	margin-left: -300px;
 	padding: 0;
 	border: none;
 	width: 1200px;
