@@ -1,33 +1,80 @@
-$(function(){
-	const carouselList = $('#carousel ul');
-	const leftButton = $('.left-button');
-	const rightButton = $('.right-button');
+const carouselList = $('#carousel ul');
+const carouselItems = $('#carousel ul li');
+const carouselItemsLength = carouselItems.length;
+const leftButton = $('.left-button');
+const rightButton = $('.right-button');
 
-	leftButton.click(changeSlideLeft);
+leftButton.click(changeSlideLeft);
 
-	rightButton.click(changeSlideRight);
+rightButton.click(changeSlideRight);
 
-	function moveFirstSlide() {
-		let firstItem = carouselList.find('li:first');
-		let lastItem = carouselList.find('li:last');
-		lastItem.after(firstItem);
-		carouselList.css({marginLeft: -300});
+function findFirstItem() {
+	const firstItem = carouselList.find('li:first');
+	return firstItem;
+}	
+
+function findLastItem() {
+	const lastItem = carouselList.find('li:last');
+	return lastItem;
+}
+
+function checkMyID() {
+	const myID = findFirstItem().next().attr('id');
+	console.log(myID);
+	return myID;	
+}
+
+function setActive() {
+	$('.circles a#0').addClass('isActive');
+}
+
+function changeActiveLeft() {
+	let activElement = $('.isActive');
+	let attrId = parseInt(activElement.attr('id'));
+	attrId++;
+	if (attrId === carouselItemsLength) {
+		attrId=0;
 	}
+	activElement.removeClass('isActive');
+	$('.circles #' + attrId).addClass('isActive'); 
+}
 
-	function moveLastSlide() {
-		let firstItem = carouselList.find('li:first');
-		let lastItem = carouselList.find('li:last');
-		firstItem.before(lastItem);
-		carouselList.css({marginLeft: -300});
+function changeActiveRight() {
+	let activElement = $('.isActive');
+	let attrId = parseInt(activElement.attr('id'));
+	attrId--;
+	if (attrId < 0) {
+		attrId=3;
 	}
+	activElement.removeClass('isActive');
+	$('.circles #' + attrId).addClass('isActive'); 
+}
 
-	function changeSlideLeft() {
-		carouselList.animate({'marginLeft': -600}, 500, moveFirstSlide);
-	}
+function moveFirstSlide() {
+	findLastItem().after(findFirstItem());
+	carouselList.css({marginLeft: -300});
+}
 
-	function changeSlideRight() {
-		carouselList.animate({'marginLeft': 0}, 500, moveLastSlide);
-	}
+function moveLastSlide() {
+	findFirstItem().before(findLastItem());
+	carouselList.css({marginLeft: -300});
+}
 
-	setInterval(changeSlideLeft, 5000); // or changeSlideRight
-});
+function changeSlideLeft() {
+	carouselList.animate({'marginLeft': -600}, 500, moveFirstSlide);
+	changeActiveLeft();
+}
+
+function changeSlideRight() {
+	carouselList.animate({'marginLeft': 0}, 500, moveLastSlide);
+	changeActiveRight();
+}
+
+const iconShapeCircle = "<i class=\"fa fa-circle-thin\" aria-hidden=\"true\"></i>";
+
+for (let i = 0; i < carouselItemsLength; i++) {
+	$('.circles').append(new Circle(i, iconShapeCircle, i).addElement());
+}
+
+setActive();
+setInterval(changeSlideLeft, 5000); // or changeSlideRight
