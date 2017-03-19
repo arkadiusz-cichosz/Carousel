@@ -1,16 +1,15 @@
-class Circle {
-	constructor(address, shape, id) {
-		this.address = '#' + address || '#';
+class PointOfList {
+	constructor(shape, id) {
 		this.shape = shape;
-		this.id = id || 0;
+		this.id = id;
 	}
 
-	checkElement() {
-		console.log(this.address + "/" + this.shape + "/" + this.id);
+	checkPoint() {
+		console.log(this.shape + "/" + this.id);
 	}
 		
-	addElement() {
-		const link = "<a href=\"" + this.address + "\" id=\"" + this.id + "\" >" + this.shape + "</a>";
-		return link;
+	addPoint() {
+		const point = "<div id=\"" + this.id + "\" class=\"" + this.shape + "\"> </div>";
+		return point;
 	}	
 }

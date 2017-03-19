@@ -25,29 +25,28 @@ function checkMyID() {
 }
 
 function setActive() {
-	$('.circles a#0').addClass('isActive');
+	$('.circle:first-of-type').addClass('isActive').attr('name', 'isFirst');
+	$('.circle:last-of-type').attr('name', 'isLast');
 }
 
 function changeActiveLeft() {
 	let activElement = $('.isActive');
-	let attrId = parseInt(activElement.attr('id'));
-	attrId++;
-	if (attrId === carouselItemsLength) {
-		attrId=0;
+	if (activElement.attr('name') !== 'isLast') {
+		activElement.removeClass('isActive').next().addClass('isActive');	
+	} else {
+		activElement.removeClass('isActive');
+		$('.circle:first-of-type').addClass('isActive');
 	}
-	activElement.removeClass('isActive');
-	$('.circles #' + attrId).addClass('isActive'); 
 }
 
 function changeActiveRight() {
 	let activElement = $('.isActive');
-	let attrId = parseInt(activElement.attr('id'));
-	attrId--;
-	if (attrId < 0) {
-		attrId=3;
+	if (activElement.attr('name') !== 'isFirst') {
+		activElement.removeClass('isActive').prev().addClass('isActive');	
+	} else {
+		activElement.removeClass('isActive');
+		$('.circle:last-of-type').addClass('isActive');
 	}
-	activElement.removeClass('isActive');
-	$('.circles #' + attrId).addClass('isActive'); 
 }
 
 function moveFirstSlide() {
@@ -70,10 +69,10 @@ function changeSlideRight() {
 	changeActiveRight();
 }
 
-const iconShapeCircle = "<i class=\"fa fa-circle-thin\" aria-hidden=\"true\"></i>";
+const classOfShape = "circle";
 
 for (let i = 0; i < carouselItemsLength; i++) {
-	$('.circles').append(new Circle(i, iconShapeCircle, i).addElement());
+	$('.circles').append(new PointOfList(classOfShape, createID()).addPoint());
 }
 
 setActive();
