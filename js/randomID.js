@@ -1,8 +1,8 @@
 function createID() {
-	const alphaTable = ['a','b','c','d','e','f','g','h','i','j'];
+	const alphaTable = '0123456789abcdefghiklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXTZ';
 	let randomID = '';
-	for (let j = 0; j < alphaTable.length; j++) {
-		randomID += alphaTable[Math.floor((Math.random()*10))];
+	for (let j = 0; j < 10; j++) {
+		randomID += alphaTable[Math.floor(Math.random()*alphaTable.length)];
 	}
 	return randomID;
 }
