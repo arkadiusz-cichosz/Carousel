@@ -1,7 +1,8 @@
 class PointOfList {
-	constructor(shape, id) {
+
+	constructor(shape, numberOfCharacters) {
 		this.shape = shape;
-		this.id = id;
+		this.id = ID.create(numberOfCharacters) || ID.create(5);
 	}
 
 	checkPoint() {
@@ -9,7 +10,7 @@ class PointOfList {
 	}
 		
 	addPoint() {
-		const point = "<div id=\"" + this.id + "\" class=\"" + this.shape + "\"> </div>";
-		return point;
+		const $point = $('<div>').addClass(this.shape).attr('id', this.id).text(' ');
+		return $point;
 	}	
 }

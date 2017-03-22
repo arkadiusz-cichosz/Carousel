@@ -72,7 +72,7 @@ function changeSlideRight() {
 const classOfShape = "circle";
 
 for (let i = 0; i < carouselItemsLength; i++) {
-	$('.circles').append(new PointOfList(classOfShape, createID()).addPoint());
+	$('.circles').append(new PointOfList(classOfShape).addPoint());
 }
 
 setActive();
